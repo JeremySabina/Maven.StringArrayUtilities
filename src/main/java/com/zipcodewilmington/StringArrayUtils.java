@@ -90,10 +90,24 @@ public class StringArrayUtils {
 
     public static boolean isPangramic(String[] array) {
 
-        String newArray = array.toString();
-        String newLowercaseArray = newArray.toLowerCase();
 
-            boolean[] mark = new boolean[26];
+        ArrayList<String> stringOfArrays = new ArrayList<String>(Arrays.asList(array));
+
+        String stringIndex = stringOfArrays.toString().toLowerCase();
+        String stringOfLetters = "abcedfghijklmnopqrstuvwxyz";
+
+        for (int iterator = 0; iterator < stringOfLetters.length(); iterator++) {
+            if (stringIndex.indexOf(stringOfLetters.charAt(iterator)) == -1) {
+
+                return false;
+            }
+        }
+        return true;
+    }
+
+        // Found online. Did not return true. not sure why.
+
+ /*           boolean[] mark = new boolean[26];
             int index;
             for (int i = 0; i < newLowercaseArray.length(); i++) {
 
@@ -113,7 +127,7 @@ public class StringArrayUtils {
                 return (true);
         }
 
-
+*/
     /**
      * @param array array of String objects
      * @param value value to check array for
@@ -171,14 +185,22 @@ public class StringArrayUtils {
     public static String[] removeConsecutiveDuplicates(String[] array) {
 
 
-        String stringOfCharacters = array.toString();
-        char[] arrayOfCharacters = stringOfCharacters.toCharArray();
+        ArrayList<String> stringOfCharacters = new ArrayList<String>();
+        ArrayList<String> newList = new ArrayList<String>();
 
+        for (int iterator = 0; iterator < array.length; iterator++) {
+            if(newList.contains(array[iterator])){
+              newList.add(array[iterator]);
 
-
-
-        return null;
+            }
+        }
+        array = newList.toArray( new String[stringOfCharacters.size()]);
+        return array;
     }
+
+
+    // FAILS THE TEST BUT IS ON THE RIGHT TRACK I THINK>>>
+
 
     /**
      * @param array array of chars
@@ -190,3 +212,4 @@ public class StringArrayUtils {
 
 
 }
+
